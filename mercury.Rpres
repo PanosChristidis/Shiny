@@ -1,0 +1,49 @@
+Mercury vapor pressure at different temperatures
+========================================================
+author: PC
+date: 27 September 2015
+
+Overview
+========================================================
+
+This is a simple appliction on shiny, just to explore what can be done.
+
+- Work started with a lot of ambition (the goal was to show a complex using an external dataset that combined quantitative and qualitative variables and -if possible- show results on a map).
+
+- Many things didn´t work as expected (using external data, combining different types of input), which is normal for the time allocated. But at least the basics have been assiniliated!
+
+- So, what we have here is a demonstration using a small dataset that comes with R (pressure) that shows how we can run a simple prediction model using shiny
+
+
+The dataset
+========================================================
+
+```{r}
+summary(pressure)
+```
+
+Correlation pressure-temperature
+========================================================
+
+```{r, echo=FALSE}
+plot(pressure)
+```
+
+The model
+========================================================
+
+- Yes, it is really simple (and probably wrong)
+
+```{r}
+library(caret)
+model<-train(pressure ~ temperature-1, method="glm", data=pressure)
+
+summary(model)
+
+```
+
+- Now have a look at the online version, which allows you to estimate pressure at different temperatures, based on this model:
+https://panosc.shinyapps.io/Shiny
+
+
+
